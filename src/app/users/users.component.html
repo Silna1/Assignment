@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Assignment</title>
+  </head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<div class="container"> 
+<div style="text-align:center">
+  <!--<h1>
+    Welcome!
+  </h1>-->
+  <button class="btn btn-info" (click)="getData()">Get Users</button>
+ </div>
+ <div style="text-align:right">
+    <!--<h1>
+      Welcome!
+    </h1>-->
+    <button class="btn btn-info" (click)="putData()">Create Users</button>
+   </div>
+ <br>
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>User Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let program of data.data  | paginate:{itemsPerPage: 5, currentPage:p}">
+                <td>{{program.id}}</td>
+                <td>{{program.name}}</td>
+                <td>
+               <button type="button" (click)="UserClicked(program.id)">UserDetails</button>
+              <!-- <a class="nav-item nav-link" routerLink="/post" routerLinkActive="active">Post</a>-->
+           <!--   <td><a [routerLink]="['/userDetails',program.id]">UserDetails </a> </td>-->
+                
+              </td>
+            </tr>
+        </tbody>
+    </table>
+    <router-outlet></router-outlet>
+    <div id="pagination">
+			<pagination-controls (pageChange)="p=$event"></pagination-controls>
+		</div>
+</div>
+</html>
